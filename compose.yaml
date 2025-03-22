@@ -1,6 +1,3 @@
-version: "3"
-volumes:
-  pgdata:
 services:
   pagila:
     image: postgres:17
@@ -33,3 +30,5 @@ services:
     ports:
       - "5050:80"
    
+volumes:
+  pgdata:
