@@ -29,6 +29,19 @@ services:
       - "./pgadmin/pgadmin_pass:/pgadmin4/pass"
     ports:
       - "5050:80"
+
+  timescaledb:
+    image: timescale/timescaledb:latest-pg17
+    environment:
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_USER: postgres
+      POSTGRES_DB: db
+    ports:
+      - "5433:5432"
+    volumes:
+      - timescaledb_data:/var/lib/postgresql/data
+    restart: always      
    
 volumes:
   pgdata:
+  timescaledb_data:
