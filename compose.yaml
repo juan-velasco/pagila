@@ -40,8 +40,29 @@ services:
       - "5433:5432"
     volumes:
       - timescaledb_data:/var/lib/postgresql/data
-    restart: always      
+    restart: always
+
+  postgis:
+    image: timescale/timescaledb-ha:pg17-ts2.19
+    environment:
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_USER: postgres
+      POSTGRES_DB: db
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgis_data:/var/lib/postgresql/data
+    restart: always    
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3009:3000"
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: 123456
+    restart: always
    
 volumes:
   pgdata:
   timescaledb_data:
+  postgis_data:
